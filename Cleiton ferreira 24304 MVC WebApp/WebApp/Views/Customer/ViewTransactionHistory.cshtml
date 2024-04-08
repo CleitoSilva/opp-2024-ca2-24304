@@ -1,0 +1,50 @@
+@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "View Transaction History";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model.Any())
+{
+    <form asp-action="ViewTransactionHistory" asp-controller="Customer" method="get">
+        <div class="form-group">
+            <label for="accountType">Select Account Type:</label>
+            <select class="form-control" id="accountType" name="accountType">
+                <option value="Savings">Savings</option>
+                <option value="Current">Current</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">View Transaction History</button>
+    </form>
+
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction Date</th>
+                <th>Action</th>
+                <th>Amount</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model)
+            {
+                var transactionDetails = transaction.Split('|');
+                <tr>
+                    <td>@transactionDetails[0]</td>
+                    <td>@transactionDetails[1]</td>
+                    <td>@transactionDetails[2]</td>
+                    <td>@transactionDetails[3]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No transactions found.</p>
+}

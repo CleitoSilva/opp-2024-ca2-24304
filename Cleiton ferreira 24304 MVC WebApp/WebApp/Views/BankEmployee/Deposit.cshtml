@@ -1,0 +1,29 @@
+@model WebApp.Models.DepositViewModel
+
+@{
+    ViewData["Title"] = "Deposit Money";
+}
+
+<h1>Deposit Money</h1>
+
+<form asp-action="Deposit"  asp-controller="BankEmployee" method="post">
+    <div class="form-group">
+        <label asp-for="AccountNumber">Account Number:</label>
+        <input asp-for="AccountNumber" class="form-control" />
+        <span asp-validation-for="AccountNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Amount">Amount:</label>
+        <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AccountType">Account Type:</label>
+        <select asp-for="AccountType" class="form-control">
+            <option value="Current">Current</option>
+            <option value="Savings">Savings</option>
+        </select>
+        <span asp-validation-for="AccountType" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Deposit</button>
+</form>

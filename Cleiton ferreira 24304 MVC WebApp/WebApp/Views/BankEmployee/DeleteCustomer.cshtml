@@ -1,0 +1,17 @@
+@model IEnumerable<WebApp.Models.Customer>
+
+@{
+    ViewData["Title"] = "Delete Customer";
+}
+
+<h1>Delete Customer</h1>
+
+<p>Please enter the account number of the customer you want to delete:</p>
+
+<form asp-action="DeleteCustomer" asp-controller="BankEmployee" method="post">
+    <div class="form-group">
+        <label for="accountNumber">Account Number:</label>
+        <input type="text" class="form-control" id="accountNumber" name="accountNumber" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Delete Customer</button>
+</form>

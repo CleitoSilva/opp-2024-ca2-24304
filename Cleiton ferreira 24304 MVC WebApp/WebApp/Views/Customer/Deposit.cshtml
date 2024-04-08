@@ -1,0 +1,40 @@
+@model WebApp.Models.DepositViewModel
+
+@{
+    ViewData["Title"] = "Deposit Money";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form asp-action="Deposit" asp-controller="Customer" method="post">
+    <div class="form-group">
+        <label for="accountNumber">Account Number:</label>
+        <input type="text" id="accountNumber" name="accountNumber" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="accountType">Account Type:</label>
+        <select id="accountType" name="accountType" class="form-control" required>
+            <option value="Checking">Checking</option>
+            <option value="Savings">Savings</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Deposit</button>
+</form>
